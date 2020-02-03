@@ -85,9 +85,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 //intent
-                Intent loc_data = new Intent(getApplicationContext(), MainActivity.class);
-                loc_data.putExtra(com.example.currentlocationtracking.Location.CURRENT_LOCATION, addressDetails);
-                startActivity(loc_data);
+
+                if (addressDetails.isEmpty()) {
+                    Toast.makeText(MapsActivity.this, "Please turn on your GPS", Toast.LENGTH_SHORT).show();
+
+                }else {
+                    Intent loc_data = new Intent(getApplicationContext(), MainActivity.class);
+                    loc_data.putExtra(com.example.currentlocationtracking.Location.CURRENT_LOCATION, addressDetails);
+                    startActivity(loc_data);
+                }
             }
         });
 
